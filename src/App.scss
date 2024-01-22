@@ -1,12 +1,16 @@
-$primary-color: #3498db;
-$secondary-color: #e74c3c;
-$accent-color: #2ecc71;
-$background-color: #ecf0f1;
-$text-color: #34495e;
+$primary: #00855F;
+$secondary: #08A176;
+$bg: #F0F1F1;
+$bg2: #444444;
+$border: #CBCBCB;
+$danger: #D20000;
+$text_main: #232324;
+$text_white: #ffffff;
+$text_sub: #434343;
 
 @media only screen and (max-width: 1024px) {
   .App {
-    background-color: $text-color;
+    background-color: green; 
   }
 }
 
@@ -18,7 +22,11 @@ $text-color: #34495e;
 
 
 .App {
+  background-color: $bg;
+  align-items: center;
   text-align: center;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
 .App-logo {
@@ -32,22 +40,75 @@ $text-color: #34495e;
   }
 }
 
+.App-content{
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+}
 
+.Main-column {
+  background-color: red;
+  display: flex;
+  align-self: stretch;
+  flex: 0 0 80%;
+  flex-direction: column;
+
+
+
+  .row{
+    display: flex;
+    background: #f0f0f0;
+  }
+
+  .Title.row{
+    justify-content: space-between;
+  
+    .Action-title{
+
+    }
+    .Action-button{
+    }
+  }
+
+  .Display.row{
+    justify-content: center;
+    flex-grow:1;
+    >div{
+      background: blue;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-around;
+      
+      .card{
+        flex: 1 1 50%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  
+
+}
 
 .App-header {
-  background-color: #282c34;
+  background-color: $bg2;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  text-align: left;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: $text_white;
 }
 
-.App-link {
-  color: #61dafb;
+.App-footer {
+  text-align: center;
+  min-height: 10vh;
 }
+
 
 @keyframes App-logo-spin {
   from {
