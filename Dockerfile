@@ -1,8 +1,8 @@
 # Use an official Node runtime as a parent image
-FROM node:14-alpine
+FROM node:18-alpine
 
 # Set the working directory in the container
-WORKDIR /usr/src/app
+WORKDIR /usr/src/react-app
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
