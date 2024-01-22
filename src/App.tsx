@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 
-import DepartmentCardsDisplay from './components/DepartmentCardsDisplay';
+import ContentCover from './components/ContentCover';
 
-import logo from './logo.svg';
+import DepartmentCard from './components/DepartmentCard';
+
+import {ReactComponent as Spinner} from './icons/TailSpin.svg';
+import {ReactComponent as DownloadIcon} from './icons/DownloadIcon.svg';
+import {ReactComponent as AsialLogo} from './icons/AsialLogo.svg';
+
 import './App.scss';
 
 type Department = {
@@ -21,21 +26,6 @@ type DepartmentWithEmployees = {
   id: number;
   name: string;
   employees: Employee[];
-}
-
-type DepartmentCard = {
-  id: number;
-  name: string;
-  lessThan29: number;
-  lessThan39: number;
-  older: number;
-  total: number;
-}
-
-
-interface ContentProps {
-  departmentData: Department[] | null;
-  employeeData: Employee[] | null;
 }
 
 const compactDate = (ymdDate: Date) => {
@@ -118,7 +108,7 @@ const App: React.FC = () => {
 
         const departmentCards = createDepartmentCards(departmentsWithEmployees);
         setContentDisplay(departmentCards);  
-        
+
       } catch (error) {
         console.error('Error fetching data:', error);
         if(error){setContentDisplay(error);}
@@ -130,7 +120,9 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header" >
-        LOGO 採用システム
+        <div>
+          <AsialLogo/> <span>採用システム</span>
+        </div>
       </header>
 
       <div className="App-content">
@@ -139,13 +131,13 @@ const App: React.FC = () => {
           <div className="Title row">
             <div className="Action-title"> <p className="h2">各部署の29歳以下のメンバー割合</p> </div>
             <div className="Action-button">
-              <button className={isLoading ? "disabled" : ""} onClick={fetchData}>
-                {isLoading ? "W8" : "ICON"} 情報を取得
+              <button disabled={isLoading} onClick={fetchData}>
+                {isLoading ?  <Spinner className="spinner"/> : <DownloadIcon/>}  {isLoading ? "loading..." : "情報を取得"}
               </button>
             </div>
           </div>
           <div className="Display row">
-            <DepartmentCardsDisplay content={contentDisplay} />
+            <ContentCover content={contentDisplay} />
           </div>
         </div>
       </div>

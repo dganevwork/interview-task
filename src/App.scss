@@ -25,7 +25,7 @@
 
 .App-content{
   width: 100%;
-  min-height: 80vh;
+  min-height: calc(100vh - 8em);
   display: flex;
   justify-content: center;
 }
@@ -58,6 +58,8 @@
       justify-content: center;
 
       >button{
+        min-width: 8.25em;
+        min-height: 2.5em;
         background-color: $primary;
         color: white;
         border: none;
@@ -68,10 +70,35 @@
         font-size: 20px;
         font-weight: 600;
         padding: 0.5em 1em 0.5em 1em;
+        >svg{
+          height: 1em;
+          width: 1em;
+        }
       }
-      >button.disabled{
-        background-color: $disabled;
+      >button:disabled{
+        filter: opacity(0.6);
       }
+    }
+  }
+
+  .Placeholder{
+    flex-direction: column;
+    justify-content: center !important;
+
+    svg.big-icon{
+      margin: 2em;
+      background: none;
+    }
+    >b{
+      font-size: 20px;
+      font-weight: 600;
+      color: $text_main;
+      margin: 0.5em;
+    }
+    >span{
+      font-size: 14px;
+      font-weight: 300;
+      color: $text_sub;
     }
   }
 
@@ -90,20 +117,20 @@
 
 }
 
-.App-header {
+header.App-header {
   background-color: $bg2;
-  min-height: 10vh;
+  min-height: 3.5em;
   display: flex;
   flex-direction: column;
-  text-align: left;
   justify-content: center;
+  text-align: left;
   font-size: 18px;
   font-weight: 600;
   color: $text_white;
-  padding: 0.25em 3em;
+  padding: 0.5em 3em;
 }
 
-.App-footer {
+footer.App-footer {
   text-align: center;
   min-height: 3em;
   border-top: 1px solid $border;
@@ -116,12 +143,12 @@
 
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .spinner {
+    animation: spinning infinite 3s linear;
   }
 }
 
-@keyframes App-logo-spin {
+@keyframes spinning {
   from {
     transform: rotate(0deg);
   }

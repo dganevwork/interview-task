@@ -2,23 +2,24 @@ import React from 'react';
 
 import DepartmentCard from './DepartmentCard';
 
+import Placeholder from './Placeholder';
 
-interface DepartmentCardsDisplayProps {
+
+interface ContentCoverProps {
   content: Error | "LOADING" | DepartmentCard[] | null;
 }
 
-const DepartmentCardsDisplay: React.FC<DepartmentCardsDisplayProps> = ({ content }) => {
+const ContentCover: React.FC<ContentCoverProps> = ({ content }) => {
   if(content instanceof Error){
-    return <div>gre6ka - {content.toString()}</div>
+    return <Placeholder content="ERROR"/>;
   }
 
   if(content === "LOADING"){
-    return <div>Loadingggg...</div>
+    return <Placeholder content="LOADING"/>;
   }
 
   if (!content) {
-    return <div>click here to get started...</div>; 
-    // Add loading message or spinner as needed
+    return <Placeholder content="DEFAULT"/>;
   } 
 
   return (
@@ -28,4 +29,4 @@ const DepartmentCardsDisplay: React.FC<DepartmentCardsDisplayProps> = ({ content
   );
 };
 
-export default DepartmentCardsDisplay;
+export default ContentCover;
