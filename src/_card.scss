@@ -1,7 +1,18 @@
 @import 'styles/colors';
 
+@media only screen and (max-width: 1024px) {
+  .card{
+    flex: 1 1 calc(100% - 2em);
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .card{
+    flex: 1 1 calc(50% - 4em);
+  }
+}
+
 .card{
-  flex: 1 1 calc(50% - 4em);
   display: flex;
   justify-content: center;
   flex-direction: column;

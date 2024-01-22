@@ -2,15 +2,16 @@
 @import 'styles/fonts';
 
 @media only screen and (max-width: 1024px) {
-  .App {
-    // background-color: green; 
+  .Title.row{
+    flex-direction: column;
+    .Action-button>button{
+      flex-grow: 1;
+    }
   }
 }
 
 @media only screen and (min-width: 1025px) {
-  .App {
-    // background-color: red;
-  }
+
 }
 
 .App {
@@ -78,6 +79,17 @@
       >button:disabled{
         filter: opacity(0.6);
       }
+      
+      @media (prefers-reduced-motion: no-preference) {
+        .spinner {
+          animation: spinning infinite 3s linear;
+        }
+      }
+
+      @keyframes spinning {
+        from {transform: rotate(0deg);}
+        to {transform: rotate(360deg);}
+      }
     }
   }
 
@@ -138,21 +150,4 @@ footer.App-footer {
   font-weight: 300;
   color: $text_sub;
   padding-top: 1em;
-}
-
-
-
-@media (prefers-reduced-motion: no-preference) {
-  .spinner {
-    animation: spinning infinite 3s linear;
-  }
-}
-
-@keyframes spinning {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
