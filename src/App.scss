@@ -1,73 +1,77 @@
-$primary: #00855F;
-$secondary: #08A176;
-$bg: #F0F1F1;
-$bg2: #444444;
-$border: #CBCBCB;
-$danger: #D20000;
-$text_main: #232324;
-$text_white: #ffffff;
-$text_sub: #434343;
+@import 'styles/colors';
+@import 'styles/fonts';
 
 @media only screen and (max-width: 1024px) {
   .App {
-    background-color: green; 
+    // background-color: green; 
   }
 }
 
 @media only screen and (min-width: 1025px) {
   .App {
-    background-color: red;
+    // background-color: red;
   }
 }
 
-
 .App {
-  background-color: $bg;
   align-items: center;
   text-align: center;
   min-height: 100vh;
   min-width: 100vw;
+  background: $bg;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-content{
   width: 100%;
-  height: 80vh;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
 }
 
 .Main-column {
-  background-color: red;
+  // background-color: red;
   display: flex;
   align-self: stretch;
   flex: 0 0 80%;
   flex-direction: column;
 
 
-
   .row{
     display: flex;
-    background: #f0f0f0;
+    justify-content: space-between;
   }
 
   .Title.row{
     justify-content: space-between;
+    padding-top: 2em;
+    padding-bottom: 2em;
   
-    .Action-title{
-
+    .Action-title .h2{
+      font-size: 24px !important;
+      font-weight: 600;
+      margin: 0;
     }
     .Action-button{
+      display: flex;
+      justify-content: center;
+
+      >button{
+        background-color: $primary;
+        color: white;
+        border: none;
+        text-align: center;
+        display: inline-block;
+        border-radius: 8px; 
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 600;
+        padding: 0.5em 1em 0.5em 1em;
+      }
+      >button.disabled{
+        background-color: $disabled;
+      }
     }
   }
 
@@ -75,21 +79,14 @@ $text_sub: #434343;
     justify-content: center;
     flex-grow:1;
     >div{
-      background: blue;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-around;
       
-      .card{
-        flex: 1 1 50%;
-        display: flex;
-        justify-content: center;
-      }
+      @import 'card';
     }
   }
-
-  
 
 }
 
@@ -100,15 +97,29 @@ $text_sub: #434343;
   flex-direction: column;
   text-align: left;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 18px;
+  font-weight: 600;
   color: $text_white;
+  padding: 0.25em 3em;
 }
 
 .App-footer {
   text-align: center;
-  min-height: 10vh;
+  min-height: 3em;
+  border-top: 1px solid $border;
+  font-size: 12px;
+  font-weight: 300;
+  color: $text_sub;
+  padding-top: 1em;
 }
 
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
 
 @keyframes App-logo-spin {
   from {

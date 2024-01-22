@@ -1,0 +1,56 @@
+@import 'styles/colors';
+
+.card{
+  flex: 1 1 calc(50% - 4em);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0px 0px 2px 1px $border;
+  flex-grow: 0;
+  margin: 1em;
+  padding: 1em;
+  background: white;
+
+  >.Card-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid $border;
+    .h3.Card-name{
+      font-size: 22px;
+      font-weight: 600;
+    }
+    b{
+        font-size: 24px;
+        color: $primary;
+        font-weight: 600;
+        margin-left: 0.25em;
+      }
+    }
+  >.Card-content{
+    .row{
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: 300;
+      >div{
+        padding: 0.5em;
+      }
+      >div.Member-label{
+        background: $bg;
+        font-size: 14px; 
+        font-weight: 600;
+      }
+      >div:nth-child(2){
+        font-size: 14px;
+        font-weight: 600;
+        b{
+          font-size: 20px;
+          color: $primary;
+        }
+      }
+    }
+    >.Card-foot{
+    border-top: 1px dotted $border;
+    }
+  }
+}

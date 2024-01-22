@@ -23,7 +23,7 @@ const DepartmentCardsDisplay: React.FC<DepartmentCardsDisplayProps> = ({ content
 
   return (
     <div>
-        {content.map((departmentCard) => (<DepartmentCard departmentCard={departmentCard} />))}
+        {content.map((departmentCard) => (<DepartmentCard key={departmentCard.id} dCard={departmentCard} />))}
     </div>
   );
 };

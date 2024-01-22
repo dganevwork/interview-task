@@ -1,9 +1,44 @@
-[
-  { "id": 1, "name": "Department A" },
-  { "id": 2, "name": "Department B" },
-  { "id": 3, "name": "Department C" },
-  { "id": 4, "name": "Department D" },
-  { "id": 5, "name": "Department E" },
-  { "id": 6, "name": "Department F" },
-  { "id": 7, "name": "Department G" }
-]
+{
+  "departments": [
+    {
+      "id": 0,
+      "name": "部署A"
+    },
+    {
+      "id": 1,
+      "name": "部署B"
+    },
+    {
+      "id": 2,
+      "name": "部署C"
+    },
+    {
+      "id": 3,
+      "name": "部署D"
+    },
+    {
+      "id": 4,
+      "name": "部署E"
+    },
+    {
+      "id": 5,
+      "name": "部署F"
+    },
+    {
+      "id": 6,
+      "name": "部署G"
+    },
+    {
+      "id": 7,
+      "name": "部署H"
+    },
+    {
+      "id": 8,
+      "name": "部署I"
+    },
+    {
+      "id": 9,
+      "name": "部署J"
+    }
+  ]
+}

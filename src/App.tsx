@@ -65,7 +65,7 @@ const isSenior = (birth_date: Date | string) => {
 }
 
 const createDepartmentsWithEmployees = (departments: Department[], employees: Employee[]): DepartmentWithEmployees[] => {
-  
+
   const employeesByDepartment = employees.reduce(function (r, emp) {
         r[emp.department_id] = r[emp.department_id] || [];
         r[emp.department_id].push(emp);
@@ -101,8 +101,10 @@ const createDepartmentCards = (departmentsWithEmployees: DepartmentWithEmployees
 
 const App: React.FC = () => {
   const [contentDisplay, setContentDisplay] = useState<any>(null)
+  const [isLoading, setIsLoading] = useState<any>(null)
 
   const fetchData  = async () => {
+    setIsLoading(true);
     setContentDisplay("LOADING");
     await new Promise(resolve => setTimeout(resolve, 1000));
       try {
@@ -112,32 +114,34 @@ const App: React.FC = () => {
         const employeeResponse = await fetch('/employees.json');
         const employeeData = await employeeResponse.json();
 
-        const departmentsWithEmployees = createDepartmentsWithEmployees(departmentData, employeeData);
+        const departmentsWithEmployees = createDepartmentsWithEmployees(departmentData.departments, employeeData.employees);
 
         const departmentCards = createDepartmentCards(departmentsWithEmployees);
-
         setContentDisplay(departmentCards);  
+        
       } catch (error) {
         console.error('Error fetching data:', error);
         if(error){setContentDisplay(error);}
       } finally {
-        // success
+        setIsLoading(false);
       }
   };
 
   return (
     <div className="App">
       <header className="App-header" >
-        LOGO ASIAL CORP
+        LOGO 採用システム
       </header>
 
       <div className="App-content">
         
         <div className="Main-column">
           <div className="Title row">
-            <div className="Action-title"> <h2>Members under 29</h2> </div>
+            <div className="Action-title"> <p className="h2">各部署の29歳以下のメンバー割合</p> </div>
             <div className="Action-button">
-              <button onClick={fetchData}>Get info</button>
+              <button className={isLoading ? "disabled" : ""} onClick={fetchData}>
+                {isLoading ? "W8" : "ICON"} 情報を取得
+              </button>
             </div>
           </div>
           <div className="Display row">
@@ -146,10 +150,7 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      <footer className="App-footer" >
-        <hr/>
-        COPYRIGHT TEXT
-      </footer>
+      <footer className="App-footer">COPYRIGHT ASIAL CORPORATION. ALL RIGHTS RESERVED.</footer>
     </div>
   );
 };
