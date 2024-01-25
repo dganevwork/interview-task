@@ -89,32 +89,46 @@ const createDepartmentCards = (departmentsWithEmployees: DepartmentWithEmployees
 }
 
 
+const wait = (ms: number) => {
+  // console.log('started waiting');
+  return new Promise(resolve => {
+    setTimeout(() => {
+      // console.log('waited');
+      resolve(true);
+    }, ms);
+  });
+}
+
 const App: React.FC = () => {
   const [contentDisplay, setContentDisplay] = useState<any>(null)
   const [isLoading, setIsLoading] = useState<any>(null)
 
-  const fetchData  = async () => {
+  const fetchData = async () => {
     setIsLoading(true);
     setContentDisplay("LOADING");
-    await new Promise(resolve => setTimeout(resolve, 1000));
-      try {
-        const departmentResponse = await fetch('/departments.json');
-        const departmentData = await departmentResponse.json();
+    const waiting_timer = wait(2000);
+    const processing_data = processData();
+    await waiting_timer;
+    await processing_data.then(result => setContentDisplay(result));
+    // console.log('2 seconds passed');
+    setIsLoading(false);
+  }
 
-        const employeeResponse = await fetch('/employees.json');
-        const employeeData = await employeeResponse.json();
-
-        const departmentsWithEmployees = createDepartmentsWithEmployees(departmentData.departments, employeeData.employees);
-
-        const departmentCards = createDepartmentCards(departmentsWithEmployees);
-        setContentDisplay(departmentCards);  
-
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        if(error){setContentDisplay(error);}
-      } finally {
-        setIsLoading(false);
-      }
+  const processData = async () => {
+    // console.log("data processing began at "+ new Date());
+    try {
+      const deps = await fetch('/departments.json');
+      const emps = await fetch('/employees.json');
+      const [departmentData, employeeData] = await Promise.all([deps.json(), emps.json()]);
+      const departmentsWithEmployees = createDepartmentsWithEmployees(departmentData.departments, employeeData.employees);
+      const departmentCards = createDepartmentCards(departmentsWithEmployees);
+      return departmentCards;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      if(error){return error;}
+    } finally {
+      // console.log('data processed');
+    }
   };
 
   return (
